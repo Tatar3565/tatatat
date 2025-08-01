@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Filomuz</title>
+<link rel="icon" type="image/png" href="favicon.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      background-color: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    /* Sabit logo üstte */
+    .logo-header {
+      background: rgba(0, 0, 0, 0.85);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      text-align: center;
+      padding: 15px 0;
+      border-bottom: 2px solid #ffd700;
+    }
+
+    .logo-header img {
+      width: 220px;
+      max-width: 90%;
+      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+      transition: transform 0.3s ease;
+    }
+
+    .logo-header img:hover {
+      transform: scale(1.05);
+    }
+
+    .filo-btn {
+      padding: 10px 16px;
+      background: #800000;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+
+    .filo-btn:hover {
+      background: #ffd700;
+      color: #000;
+    }
+
+    .filo-detay-btn {
+      margin-top: 10px;
+      background: #ffd700;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: #000;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .filo-detay-btn:hover {
+      background: #fff;
+      color: #800000;
+    }
+
+    .filo-card {
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 16px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 10px rgba(255, 215, 0, 0.1);
+    }
+
+    .filo-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 16px rgba(255, 215, 0, 0.2);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #111;
+      color: #fff;
+      max-width: 500px;
+      width: 90%;
+      padding: 20px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .modal-content span {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 32px;
+      cursor: pointer;
+      color: red;
+    }
+
+    .back-home-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #800000, #a00000);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      font-family: 'Oswald', sans-serif;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    }
+
+    .back-home-btn:hover {
+      background: #ffd700;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ffd700;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sabit Logo -->
+<div class="logo-header">
+  <img src="img/tatar-logo.png" alt="Tatar Taşımacılık Logo">
+</div>
+
+<section id="filo" style="padding: 60px 20px;">
+  <div style="max-width: 1100px; margin: auto; text-align: center;">
+    <h2 style="font-size: 2rem; color: #ffd700; margin-bottom: 30px;">Filomuz</h2>
+
+    <div style="margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+      <button onclick="filterFilo('all')" class="filo-btn">Tümü</button>
+      <button onclick="filterFilo('minibus')" class="filo-btn">16'lık Araç</button>
+      <button onclick="filterFilo('midibus')" class="filo-btn">27'lik Araç</button>
+      <button onclick="filterFilo('otobus')" class="filo-btn">Travego</button>
+      <button onclick="filterFilo('vip')" class="filo-btn">VIP</button>
+    </div>
+
+    <div class="filo-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+      <div class="filo-card minibus">
+        <img src="img/minibus1.jpg" alt="Mercedes-Benz Sprinter" style="width:100%; border-radius:8px; height:150px; object-fit:cover;">
+        <h3 style="margin-top:10px; font-size:1.1rem; font-weight:bold;">Mercedes-Benz Sprinter</h3>
+        <p style="font-size: 0.9rem;">16+1 Kişi Kapasiteli, Klimalı, Tv Sistemli, Konforlu Ve USB Şarj Destekli</p>
+        <button class="filo-detay-btn">Detaylar</button>
+      </div>
+
+      <div class="filo-card midibus">
+        <img src="img/midibus1.jpg" alt="Sultan" style="width:100%; border-radius:8px; height:150px; object-fit:cover;">
+        <h3 style="margin-top:10px; font-size:1.1rem; font-weight:bold;">Sultan</h3>
+        <p style="font-size: 0.9rem;">27 Kişi Kapasiteli, Klimalı, Tv Sistemli, Konforlu Ve USB Şarj Destekli, Yatan Koltuklar</p>
+        <button class="filo-detay-btn">Detaylar</button>
+      </div>
+
+      <div class="filo-card otobus">
+        <img src="img/otobus1.jpg" alt="Mercedes-Benz Travego" style="width:100%; border-radius:8px; height:150px; object-fit:cover;">
+        <h3 style="margin-top:10px; font-size:1.1rem; font-weight:bold;">Mercedes-Benz Travego</h3>
+        <p style="font-size: 0.9rem;">50 Kişi Kapasiteli, Klimalı, Tv Sistemli, Konforlu Ve USB Şarj Destekli, Yatan Koltuklar, Yiyecek Ve İçecek Hizmeti</p>
+        <button class="filo-detay-btn">Detaylar</button>
+      </div>
+
+      <div class="filo-card vip">
+        <img src="img/vip1.jpg" alt="Mercedes-Benz Vito" style="width:100%; border-radius:8px; height:150px; object-fit:cover;">
+        <h3 style="margin-top:10px; font-size:1.1rem; font-weight:bold;">Mercedes-Benz Vito</h3>
+        <p style="font-size: 0.9rem;">7 Kişi Kapasiteli, Klimalı, Tv Sistemli, Konforlu Ve USB Şarj Destekli, Yatan Koltuklar, Yiyecek, İçecek Hizmeti, Wİ-Fİ, Led Ekran</p>
+        <button class="filo-detay-btn">Detaylar</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+  <a href="index.html" 
+     style="padding: 14px 30px; 
+            background-color: #ffd700; 
+            color: #000; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border-radius: 30px; 
+            font-family: 'Oswald', sans-serif; 
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4); 
+            transition: all 0.3s ease;">
+    🏠 Anasayfaya Dön
+  </a>
+</div>
+
+  </div>
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span onclick="closeModal()">&times;</span>
+    <img id="modalImage" src="" alt="" style="width:100%; border-radius:8px; margin-bottom:15px;">
+    <h3 id="modalTitle"></h3>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<script>
+  function filterFilo(category) {
+    const cards = document.querySelectorAll('.filo-card');
+    cards.forEach(card => {
+      card.style.display = (category === 'all' || card.classList.contains(category)) ? 'block' : 'none';
+    });
+  }
+
+  const modalData = {
+    "Mercedes-Benz Sprinter": {
+      image: "img/minibus1.jpg",
+      title: "Mercedes-Benz Sprinter",
+      text: "16+1 Kişi Kapasiteli, Klimalı, Tv Sistemli, Konforlu Ve USB Şarj Destekli"
+    },
+    "Sultan": {
+      image: "img/midibus1.jpg",
+      title: "Otokar Sultan",
+      text: "27 Kişi Kapasiteli, Klimalı, Tv Sistemli, Konforlu Ve USB Şarj Destekli, Yatan Koltuklar"
+    },
+    "Mercedes-Benz Travego": {
+      image: "img/otobus1.jpg",
+      title: "Mercedes-Benz Travego",
+      text: "50 Kişi Kapasiteli, Klimalı, Tv Sistemli, Konforlu Ve USB Şarj Destekli, Yatan Koltuklar, Yiyecek Ve İçecek Hizmeti"
+    },
+    "Mercedes-Benz Vito": {
+      image: "img/vip1.jpg",
+      title: "Mercedes-Benz Vito",
+      text: "7 Kişi Kapasiteli, Klimalı, Tv Sistemli, Konforlu Ve USB Şarj Destekli, Yatan Koltuklar, Yiyecek, İçecek Hizmeti, Wİ-Fİ, Led Ekran"
+    }
+  };
+
+  document.querySelectorAll('.filo-detay-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      const title = this.parentElement.querySelector('h3').innerText;
+      const data = modalData[title];
+      if (data) {
+        document.getElementById('modalImage').src = data.image;
+        document.getElementById('modalTitle').innerText = data.title;
+        document.getElementById('modalText').innerText = data.text;
+        document.getElementById('modal').style.display = 'flex';
+      }
+    });
+  });
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
